@@ -122,67 +122,126 @@
             </div>
         </div>
     </section>
+
+
+
     <script>
-        function Show() {
-            alert("hi");
-            
-            $.ajax({
-                type: "POST",
-                crossDomain: true,
-                url: "http://50.31.147.142/TheSpeakingResumes/Login.asmx/LoginViaFacebook",
-                data: "{'UserName':'11'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    $("#jsonResponse").html(response);
-                    var data = eval('(' + response.d + ')');
-                    var t = "";
-                    jQuery.each(data, function (rec) {
-                        alert(this.Msg)
-                    });
-                  
-
-                },
-                error: function (msg) {
-
-                }
-
+        document.addEventListener('deviceready', function (e) {
+            if (device.platform == 'android') {
+                window.plugins.pushNotification.register({ 
+                    senderID: 'asdf@asdf.com',
+                    onevent: onEvent,
+                    onsuccess: onRegister,
+                    onerror: onFail
+                });
+            } else {
+                window.plugins.pushNotification.register({ 
+                    onevent: onEvent, // sugar for subscribing to push-notification evt
+                    onsuccess: onRegister,
+                    onerror: onFail,
+                    allowBadge: false,
+                allowSound: false,
+                allowAlert: true
             });
-            
+        };
+        }, false);
 
-            //var xmlhttp = new XMLHttpRequest();
-            //var url = "http://pollingcube.herokuapp.com/all_polls";
+        function onEvent(e) {
+            var msg;
 
-            //xmlhttp.onreadystatechange = function () {
-            //    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //        myFunction(xmlhttp.responseText);
-            //    }
-            //}
-            //xmlhttp.open("GET", url, true);
-            //xmlhttp.send();
+            if (e.type == 'message') {
+                msg = JSON.parser(e.message);
+                alert(msg)
+                // do stuff with msg
+            }
+        }
 
-            //function myFunction(response) {
-            
-            //    var arr = JSON.parse(response);
-            //    var t = "";
-            //    for (var i = 0; i < arr.length; i++) {
-            //        t = t + "<div class='col-md-12 col-sm-12 masonry-item blog-item'><div class='thumbnail'><div class='caption' style='margin-top:-20px'>" +
-            //            " <h3>" + arr[i].p_name + "</h3>" +
+        function onRegister(e) {
+            alert("hekko");
+            // do whatever needs to be done
+        }
+
+        function onFail(e) {
+            console.log(e.message);
+        }
+        function Show() {
+        //    alert("hi");
+        //    $.ajax({ 
+        //        url: 'http://pollingcube.herokuapp.com/all_polls',
+        //    type: "GET", 
+        //    data: '', 
+        //    dataType: 'jsonp', 
+        //    jsonp: 'callback', 
+        //    jsonpCallback: 'callbackFunction', 
+        //    success: function () {
+        //        alert("i am here");
+        //    } 
+        //}); 
+          
+            //$.ajax({
+            //    type: "POST",
+            //    crossDomain: true,
+            //    url: "http://pollingcube.herokuapp.com/all_polls",
+            //    data: "{}",
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    success: function (response) {
+            //        $("#jsonResponse").html(response);
+            //        var data = eval('(' + response.d + ')');
+            //        var t = "";
+            //        jQuery.each(data, function (rec) {
+            //            t = t + "<div class='col-md-12 col-sm-12 masonry-item blog-item'><div class='thumbnail'><div class='caption' style='margin-top:-20px'>" +
+            //            " <h3>" + this.p_name + "</h3>" +
             //            "<hr class='dotted'><span class='autor-post'><img src='images/android-desktop.png' alt=''></span>" +
             //            " <a href='#' class='button button-raised button-action button-circle pull-right' style='margin-left:5px'>1 <i class='fa fa-thumbs-up'></i></a>" +
             //            "<a href='#' class='button button-caution  button-action button-circle pull-right' style='background-color:rgba(255, 0, 0, 0.90);color:#ffffff'>2 <i class='fa fa-thumbs-down'></i></a>" +
             //            "<div class='clearfix'></div></div></div></div>";
+            //        });
+            //        $("#Main").empty();
+
+            //        $("#Main").append(t);
+
+            //    },
+            //    error: function (msg) {
 
             //    }
 
-            //    $("#Main").empty();
+            //});
+            
 
-            //    $("#Main").append(t);
+            var xmlhttp = new XMLHttpRequest();
+            var url = "http://pollingcube.herokuapp.com/all_polls";
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    myFunction(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+
+            function myFunction(response) {
+            
+                var arr = JSON.parse(response);
+                var t = "";
+                for (var i = 0; i < arr.length; i++) {
+                    t = t + "<div class='col-md-12 col-sm-12 masonry-item blog-item'><div class='thumbnail'><div class='caption' style='margin-top:-20px'>" +
+                        " <h3>" + arr[i].p_name + "</h3>" +
+                        "<hr class='dotted'><span class='autor-post'><img src='images/android-desktop.png' alt=''></span>" +
+                        " <a href='#' class='button button-raised button-action button-circle pull-right' style='margin-left:5px'>1 <i class='fa fa-thumbs-up'></i></a>" +
+                        "<a href='#' class='button button-caution  button-action button-circle pull-right' style='background-color:rgba(255, 0, 0, 0.90);color:#ffffff'>2 <i class='fa fa-thumbs-down'></i></a>" +
+                        "<div class='clearfix'></div></div></div></div>";
+
+                }
+
+                $("#Main").empty();
+
+                $("#Main").append(t);
 
 
 
 
-            //}
+            }
         }
         function Showval(param2) {
             window.location = "ViewPollDetail.html?ID=" + param2;
