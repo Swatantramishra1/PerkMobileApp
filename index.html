@@ -51,7 +51,7 @@
     </style>
 
 </head>
-<body onload="Show()">
+<body onload="">
     <div id="BigMenu" style="position:fixed;width:100%;z-index:1000;margin-bottom:100px">
         <section id="intro" class="intro-section" style=" background-color: #1b6296">
             <div class="container content-lg" style="">
@@ -102,7 +102,7 @@
     <section class="intro-section" style="margin-top:80px">
         <div class="panel-body">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" style="cursor:pointer" onclick="Show()">
                     <h2 class="panel-title">All Polls</h2>
                 </div>
                 <div class="panel-body" id="Main">
@@ -167,7 +167,7 @@
             xmlhttp.send();
 
             function myFunction(response) {
-                alert("sal")
+            
                 var arr = JSON.parse(response);
                 var t = "";
                 for (var i = 0; i < arr.length; i++) {
