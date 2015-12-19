@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Home | All Polls</title>
+   
+    <meta name="description" content="">
+    <!-- CSS -->
+    <link href="assets/css/preload.css" rel="stylesheet">
+    <link href="assets/css/vendors.css" rel="stylesheet">
+    <link href="assets/css/syntaxhighlighter/shCore.css" rel="stylesheet">
+    <link href="assets/css/style-blue.css" rel="stylesheet" title="default">
+    <link href="assets/css/width-full.css" rel="stylesheet" title="default">
+    <link href="assets/Scroll.css" rel="stylesheet" />
+    <style>
+        .Orchange {
+            cursor: pointer;
+            position: relative;
+            float: left;
+            height: 100%;
+            color: #656262;
+            padding: 13px;
+            line-height: 20px;
+        }
+
+            .Orchange:hover {
+                color: #1b6296;
+            }
+
+        .hovejob {
+            border: 1px solid #d4d2d2;
+            padding: 5px;
+            background-color: #ffffff;
+            color: #656262;
+            margin-top: 2px;
+        }
+
+            .hovejob:hover {
+                border-bottom: 2px solid #0094ff;
+            }
+
+        #HoverMenu {
+            border-bottom: 1px solid #808080;
+        }
+
+            #HoverMenu:hover {
+                background-color: #000000;
+            }
+    </style>
+
+</head>
+<body onload="Show()">
+    <div id="BigMenu" style="position:fixed;width:100%;z-index:1000;margin-bottom:100px">
+        <section id="intro" class="intro-section" style=" background-color: #1b6296">
+            <div class="container content-lg" style="">
+                <div class="col-md-12" style="height:30px;padding:1px">
+                    <div class="col-md-10" style="color: white;text-align:right;padding:3px">
+
+                    </div>
+                    <div class="col-md-2" style="color: white;padding:2px">
+
+                        <button style="float:right;margin-right:2px" class="button button-primary button-box button-tiny button-longshadow-right">
+                            <i class="fa fa-twitter"></i>
+                        </button>
+                        <button style="float: right; margin-right: 2px" class="button button-caution button-box button-raised button-tiny button-longshadow">
+                            <i class="fa fa-google-plus"></i>
+                        </button>
+                        <button style="float: right; margin-right: 2px" class="button button-action button-box button-tiny button-longshadow-left">
+                            <i class="fa fa-share-alt"></i>
+                        </button>
+                        <button style="float: right; margin-right: 2px" class="button button-highlight button-box button-tiny button-longshadow-right button-longshadow-expand">
+                            <i class="fa fa-rss"></i>
+                        </button>
+                        <div style="width:70px;position:relative;float:right;padding:2px">
+                            Visit Us :
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="intro" class="intro-section" style=" background-color: #ffffff; box-shadow: 5px 0px 10px #888888">
+            <div class="container content-lg">
+                <div class="col-md-12" style="min-width:1050px;background-color:#">
+                    <div id="Logo" class="" style="width: auto; position: relative; float: left;padding:2px">
+                        <a href="#" style="text-decoration:none !important;color:#656262">
+
+                            <img src="images/logo.png" style="height:40px;width:130px;float:left" />
+                        </a>
+
+                    </div>
+                   
+                </div>
+
+            </div>
+
+        </section>
+    </div>
+
+    <section class="intro-section" style="margin-top:80px">
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">All Polls</h2>
+                </div>
+                <div class="panel-body" id="Main">
+                   
+                    <div class='col-md-12 col-sm-12 masonry-item blog-item'><div class='thumbnail'><div class='caption' style='margin-top:-20px'>
+                                <h3>An amazing post title</h3>
+                               <hr class='dotted'><span class='autor-post'><img src='images/android-desktop.png' alt=''></span>
+                                <a href='#' class='button button-raised button-action button-circle pull-right' style='margin-left:5px'><i class='fa fa-thumbs-up'></i></a>
+                                <a href='#' class='button button-caution  button-action button-circle pull-right' style='background-color:rgba(255, 0, 0, 0.90);color:#ffffff'><i class='fa fa-thumbs-down'></i></a>
+                                <div class='clearfix'></div></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function Show() {
+
+            var xmlhttp = new XMLHttpRequest();
+            var url = "http://pollingcube.herokuapp.com/all_polls";
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    myFunction(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+
+            function myFunction(response) {
+
+                var arr = JSON.parse(response);
+                var t = "";
+                for (var i = 0; i < arr.length; i++) {
+                    t = t + "<div class='col-md-12 col-sm-12 masonry-item blog-item'><div class='thumbnail'><div class='caption' style='margin-top:-20px'>" +
+                        " <h3>" + arr[i].p_name + "</h3>" +
+                        "<hr class='dotted'><span class='autor-post'><img src='images/android-desktop.png' alt=''></span>" +
+                        " <a href='#' class='button button-raised button-action button-circle pull-right' style='margin-left:5px'>1 <i class='fa fa-thumbs-up'></i></a>" +
+                        "<a href='#' class='button button-caution  button-action button-circle pull-right' style='background-color:rgba(255, 0, 0, 0.90);color:#ffffff'>2 <i class='fa fa-thumbs-down'></i></a>" +
+                        "<div class='clearfix'></div></div></div></div>";
+                       
+                }
+
+                $("#Main").empty();
+
+                $("#Main").append(t);
+
+
+
+
+            }
+        }
+        function Showval(param2) {
+            window.location = "ViewPollDetail.html?ID=" + param2;
+        }
+    </script>
+    <script src="assets/assets/js/vendors.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- Syntaxhighlighter -->
+    <script src="assets/js/syntaxhighlighter/shCore.js"></script>
+    <script src="assets/js/syntaxhighlighter/shBrushXml.js"></script>
+    <script src="assets/js/syntaxhighlighter/shBrushJScript.js"></script>
+
+    <script src="assets/js/app.js"></script>  
+</body>
+</html>
