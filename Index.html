@@ -124,7 +124,37 @@
     </section>
     <script>
         function Show() {
-            alert("hi")
+            alert("hi");
+            //$.ajax({
+            //    type: "POST",
+            //    crossDomain: true,
+            //    url: "http://pollingcube.herokuapp.com/all_polls",
+            //    data: "{}",
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    success: function (response) {
+            //        $("#jsonResponse").html(response);
+            //        var data = eval('(' + response.d + ')');
+            //        var t = "";
+            //        jQuery.each(data, function (rec) {
+            //            t = t + "<div class='col-md-12 col-sm-12 masonry-item blog-item'><div class='thumbnail'><div class='caption' style='margin-top:-20px'>" +
+            //            " <h3>" + this.p_name + "</h3>" +
+            //            "<hr class='dotted'><span class='autor-post'><img src='images/android-desktop.png' alt=''></span>" +
+            //            " <a href='#' class='button button-raised button-action button-circle pull-right' style='margin-left:5px'>1 <i class='fa fa-thumbs-up'></i></a>" +
+            //            "<a href='#' class='button button-caution  button-action button-circle pull-right' style='background-color:rgba(255, 0, 0, 0.90);color:#ffffff'>2 <i class='fa fa-thumbs-down'></i></a>" +
+            //            "<div class='clearfix'></div></div></div></div>";
+            //        });
+            //        $("#Main").empty();
+
+            //        $("#Main").append(t);
+
+            //    },
+            //    error: function (msg) {
+
+            //    }
+
+            //});
+            
             var xmlhttp = new XMLHttpRequest();
             var url = "http://pollingcube.herokuapp.com/all_polls";
 
