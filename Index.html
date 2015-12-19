@@ -124,7 +124,7 @@
     </section>
     <script>
         function Show() {
-
+            alert("hi")
             var xmlhttp = new XMLHttpRequest();
             var url = "http://pollingcube.herokuapp.com/all_polls";
 
@@ -137,7 +137,7 @@
             xmlhttp.send();
 
             function myFunction(response) {
-
+                alert("sal")
                 var arr = JSON.parse(response);
                 var t = "";
                 for (var i = 0; i < arr.length; i++) {
